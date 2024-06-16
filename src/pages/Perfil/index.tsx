@@ -831,7 +831,7 @@ const Perfil: React.FC = () => {
           <TextField
             id="nome-produto"
             label="Nome do Produto"
-            type='email'
+            type="email"
             fullWidth
             margin="normal"
             value={nomeProduto}
@@ -848,13 +848,13 @@ const Perfil: React.FC = () => {
           >
             <TextField
               id="valor-produto"
-              label="Valor do Produto"
-              type="number"
+              label="Valor"
+              type="text"
               margin="normal"
               value={valorProduto}
               onChange={handleValorChange}
               required
-              fullWidth={true}
+              fullWidth
             />
             <TextField
               id="quantidade-produto"
@@ -864,7 +864,7 @@ const Perfil: React.FC = () => {
               value={quantidadeProduto}
               onChange={(e) => setQuantidadeProduto(e.target.value)}
               required
-              fullWidth={true}
+              fullWidth
             />
           </Box>
           <Box
@@ -905,6 +905,7 @@ const Perfil: React.FC = () => {
           </Grid>
         </Card>
       </Modal>
+
 
       <Modal
         open={openDicaModal}

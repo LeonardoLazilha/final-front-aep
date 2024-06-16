@@ -5,6 +5,7 @@ import ButtonAppBarGreen from "../../components/ButtonAppBarGreen";
 import { Typography, Card, CardContent, CardMedia, TextField, Button, InputAdornment } from '@mui/material';
 import { FaSearch, FaSortAmountUp, FaSortAmountDown } from 'react-icons/fa';
 import Carousel from 'react-material-ui-carousel';
+import './produtos.css'; // Ensure you have this CSS file
 
 type ProdutoType = {
   nome: string;
@@ -55,7 +56,6 @@ const Produtos: React.FC = () => {
     }
   }, []);
 
- 
   const handleOrdenar = (tipo: "asc" | "desc") => {
     setOrdem(tipo);
   };
@@ -74,6 +74,23 @@ const Produtos: React.FC = () => {
       return 0;
     });
 
+  const truncateText = (text: string, maxLength: number) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
+  };
+
+  const chunkArray = (array: any[], chunkSize: number) => {
+    const chunks = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      chunks.push(array.slice(i, i + chunkSize));
+    }
+    return chunks;
+  };
+
+  const produtoChunks = chunkArray(produtosFiltrados, 3);
+
   return (
     <>
       <ButtonAppBarGreen />
@@ -84,6 +101,7 @@ const Produtos: React.FC = () => {
         <TextField
           label="Buscar por nome do produto ou nome do agricultor"
           variant="outlined"
+          type='email'
           value={buscaNome}
           onChange={(e) => setBuscaNome(e.target.value)}
           InputProps={{
@@ -126,31 +144,35 @@ const Produtos: React.FC = () => {
           </Button>
         </Box>
 
-        <Grid container spacing={4}>
-          {produtosFiltrados.map((produto, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={{ display: 'flex', flexDirection: 'column' }}>
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={produto.imagem || '/placeholder.jpg'}
-                  alt={produto.nome}
-                />
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography variant="h5" component="h2" gutterBottom>
-                    {produto.nome}
-                  </Typography>
-                  <Typography color="textSecondary" gutterBottom>
-                    Valor: R$ {produto.valor}, Quantidade: {produto.quantidade}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Registrado por: {produto.usuario}
-                  </Typography>
-                </CardContent>
-              </Card>
+        <Carousel animation="slide" autoPlay={false} navButtonsAlwaysVisible>
+          {produtoChunks.map((chunk, index) => (
+            <Grid container spacing={4} key={index}>
+              {chunk.map((produto, idx) => (
+                <Grid item xs={12} sm={6} md={4} key={idx}>
+                  <Card sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={produto.imagem || '/placeholder.jpg'}
+                      alt={produto.nome}
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography variant="h5" component="h2" gutterBottom>
+                        {produto.nome}
+                      </Typography>
+                      <Typography color="textSecondary" gutterBottom>
+                        Valor: R$ {produto.valor}, Quantidade: {produto.quantidade}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        Registrado por: {produto.usuario}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
             </Grid>
           ))}
-        </Grid>
+        </Carousel>
 
         <Box sx={{ marginTop: '2rem' }}>
           <Grid container spacing={4}>
@@ -158,43 +180,47 @@ const Produtos: React.FC = () => {
               <Typography variant="h4" component="h4" gutterBottom align="center">
                 Dicas
               </Typography>
-              <Carousel>
-                {dicas.map((dica, index) => (
-                  <Card key={index} sx={{ padding: 2, marginBottom: 2, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}>
-                    <CardContent>
-                      <Typography variant="h6">{dica.titulo}</Typography>
-                      <Typography variant="body1">{dica.texto}</Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Data: {new Date(dica.data).toLocaleDateString()}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Autor: {dica.usuario}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                ))}
-              </Carousel>
+              <div className="carousel-container">
+                <Carousel navButtonsAlwaysVisible autoPlay>
+                  {dicas.map((dica, index) => (
+                    <Card key={index} sx={{ padding: 2, marginBottom: 2, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}>
+                      <CardContent>
+                        <Typography variant="h6">{dica.titulo}</Typography>
+                        <Typography variant="body1">{truncateText(dica.texto, 100)}</Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Data: {new Date(dica.data).toLocaleDateString()}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Autor: {dica.usuario}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </Carousel>
+              </div>
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography variant="h4" component="h4" gutterBottom align="center">
                 Receitas
               </Typography>
-              <Carousel>
-                {receitas.map((receita, index) => (
-                  <Card key={index} sx={{ padding: 2, marginBottom: 2, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}>
-                    <CardContent>
-                      <Typography variant="h6">{receita.titulo}</Typography>
-                      <Typography variant="body1">{receita.texto}</Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Data: {new Date(receita.data).toLocaleDateString()}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Autor: {receita.usuario}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                ))}
-              </Carousel>
+              <div className="carousel-container">
+                <Carousel navButtonsAlwaysVisible autoPlay>
+                  {receitas.map((receita, index) => (
+                    <Card key={index} sx={{ padding: 2, marginBottom: 2, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}>
+                      <CardContent>
+                        <Typography variant="h6">{receita.titulo}</Typography>
+                        <Typography variant="body1">{truncateText(receita.texto, 100)}</Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Data: {new Date(receita.data).toLocaleDateString()}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Autor: {receita.usuario}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </Carousel>
+              </div>
             </Grid>
           </Grid>
         </Box>

@@ -1,0 +1,12 @@
+.carousel-container {
+  position: relative;
+}
+
+.carousel-container:hover .MuiButtonBase-root {
+  opacity: 1;
+}
+
+.carousel-container .MuiButtonBase-root {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
