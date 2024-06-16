@@ -41,11 +41,9 @@ export default function ButtonAppBar() {
               <MenuIcon />
             </IconButton>
           )}
-          {/* Logo */}
           <Typography variant="h4" component="div" sx={{ flexGrow: 1, color: '#007E2F', fontWeight: 'bold', fontFamily: 'Merriweather' }}>
             <Link to="/" style={{ textDecoration: 'none', color: '#007E2F' }}>GreenFarm</Link>
           </Typography>
-          {/* Itens do centro - aparecem apenas em telas maiores que 700px */}
           {!isMobile && (
             <React.Fragment>
               <Button color="inherit" component={Link} to="/" sx={{ color: '#000' }}>Início</Button>
@@ -53,13 +51,24 @@ export default function ButtonAppBar() {
               <Button color="inherit" component={Link} to="/produtos" sx={{ color: '#000' }}>Produtos</Button>
             </React.Fragment>
           )}
-          {/* Botão de login */}
-          <Button color="inherit" component={Link} to="/login" sx={{ backgroundColor: '#007E2F', color: '#FFFFFF', '&:hover': { backgroundColor: '#007E2F', color: '#FFFFFF' }, fontSize: isMobile ? '0.8rem' : 'inherit' }}>
+          <Button
+            color="inherit"
+            component={Link}
+            to="/login"
+            sx={{
+              backgroundColor: '#007E2F',
+              color: '#FFFFFF',
+              '&:hover': {
+                backgroundColor: '#007E2F',
+                color: '#FFFFFF',
+              },
+              fontSize: '0.7rem', 
+            }}
+          >
             Já sou agricultor
           </Button>
         </Toolbar>
       </AppBar>
-      {/* Menu burger aparece apenas em telas menores que 700px */}
       {
         isMobile && (
           <Drawer anchor="left" open={open} onClose={handleDrawerClose}>

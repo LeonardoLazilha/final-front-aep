@@ -1,11 +1,11 @@
 import React from 'react';
 import ButtonAppBar from '../../components/ButtonAppBar';
 import MessageComponent from '../../components/MessageComponent';
-import './home.css'; // Importe o arquivo CSS aqui
+import './home.css';
 
 export default function Home() {
   return (
-    <div className="green-background"> {/* Aplique a classe CSS aqui */}
+    <div className="green-background"> 
       <ButtonAppBar />
       <MessageComponent />
     </div>

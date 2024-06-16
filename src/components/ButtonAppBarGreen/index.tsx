@@ -57,12 +57,13 @@ export default function ButtonAppBarGreen() {
               <Button color="inherit" sx={{ color: '#fff' }} component={Link} to="/produtos">
                 Produtos
               </Button>
+              <Button color="inherit" sx={{ color: '#fff' }} component={Link} to="/perfil">
+                Perfil
+              </Button>
             </React.Fragment>
           )}
-          {/* Botão de login */}
         </Toolbar>
       </AppBar>
-      {/* Menu burger aparece apenas em telas menores que 700px */}
       {
         isMobile && (
           <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
@@ -75,6 +76,9 @@ export default function ButtonAppBarGreen() {
               </ListItem>
               <ListItem button component={Link} to="/produtos" onClick={handleDrawerClose}>
                 <ListItemText primary="Produtos" />
+              </ListItem>
+              <ListItem button component={Link} to="/perfil" onClick={handleDrawerClose}>
+                <ListItemText primary="Perfil" />
               </ListItem>
             </List>
           </Drawer>

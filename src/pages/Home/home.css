@@ -1,5 +1,7 @@
-/* home.css */
-
 .green-background {
-  background-color: #00230d;
+  background-color: #007E2F;
+  background-image: url('../../img/blurry-gradient-haikei.png'); /* Ajuste o caminho para subir dois níveis (src/pages/Home para src) */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

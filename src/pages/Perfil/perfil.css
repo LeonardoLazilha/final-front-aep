@@ -1,0 +1,160 @@
+.perfil-container {
+  position: relative; 
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.perfil-card {
+  background-color: #fff;
+  padding: 20px;
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.perfil-container-prod {
+  position: relative; 
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.perfil-card-prod {
+  background-color: #fff;
+  padding: 20px;
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.perfil-container-receita {
+  position: relative; 
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.perfil-card-receita {
+  background-color: #fff;
+  padding: 20px;
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.perfil-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 100px;
+  object-fit: cover;
+}
+
+.upload-button {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1; 
+}
+
+.remove-photo-text {
+  margin-top: 5px;
+  text-decoration: underline;
+  color: #666;
+  cursor: pointer;
+}
+
+.remove-photo-text:hover {
+  color: #333;
+}
+
+
+.input-container {
+  margin-top: 20px;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+  display: block;
+  margin: 10px auto;
+  padding: 8px;
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: none;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+
+.produto-item {
+  margin-bottom: 16px;
+}
+
+.produto-item .MuiCard-root {
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.produto-item .MuiTypography-h6 {
+  margin-bottom: 8px;
+}
+
+.produto-item .MuiTypography-body1 {
+  margin-bottom: 4px;
+}
+
+.produto-item .MuiButton-root {
+  margin-right: 8px;
+}
+
+.custom-save-button {
+  background-color: #007E2F;
+  color: #fff;
+  width: 100px; 
+  height: 40px; 
+  border-radius: 4px; 
+  font-size: 16px;
+  border: none; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+.custom-save-button:hover {
+  background-color: #005C1F;
+}
+
+.custom-save-button:active {
+  background-color: #004415; 
+}
+
+.remove-photo-text{
+  margin-left: 15px;
+}
